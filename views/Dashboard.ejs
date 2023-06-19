@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+      integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+      integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="row my-4">
+      <div class="col-lg-13">
+        <% if (message) { %>
+        <div
+          class="alert alert-dismissible fade show alert-<%= message.type %>"
+          role="alert"
+        >
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Closer"
+          ></button>
+          <strong><%=message.message %> </strong>
+        </div>
+        <% } %>
+        <div class="table-responsive">
+          <% if (info!='') { %>
+          <table class="table table-striped my-5">
+            <thead>
+              <tr class="table-dark">
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Telephone- No.</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% info.forEach((row,index) => { %>
+              <tr class="align-middle">
+                <td><%=index %></td>
+                <td><%= row.firstname%></td>
+                <td><%= row.lastname%></td>
+                <td><%= row.dateofbirth%></td>
+                <td><%= row.gender%></td>
+                <td><%= row.telephone%></td>
+                <td><%= row.email%></td>
+                <td>
+                  <a href="/delete/<%=row._id%>" class="text-danger"
+                    ><i class="fas fa-trash fa-lg mx-0"></i
+                  ></a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <% } else { %>
+          <h1 class="text-center text-secondary mt-5">No Data is Present</h1>
+          <% } %>
+        </div>
+      </div>
+      <div class="add-btn">
+        <a href="/add">
+          <button type="button" class="btn btn-danger btn-lg">Add</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
